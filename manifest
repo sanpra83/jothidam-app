@@ -1,0 +1,20 @@
+{
+  "name": "ஜோதிடம் - Tamil Astrology",
+  "short_name": "ஜோதிடம்",
+  "description": "Daily Horoscope, Kundali & Numerology in Tamil & English",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0118",
+  "theme_color": "#0a0118",
+  "orientation": "portrait",
+  "lang": "ta",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ],
+  "categories": ["lifestyle", "entertainment"],
+  "screenshots": [],
+  "shortcuts": [
+    {"name": "Daily Horoscope", "url": "/?page=horoscope", "description": "View today's horoscope"},
+    {"name": "Kundali", "url": "/?page=kundali", "description": "Calculate birth chart"}
+  ]
+}
