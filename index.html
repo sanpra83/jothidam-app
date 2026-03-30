@@ -27,62 +27,34 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 /* ===== SPLASH ===== */
 #splash{
   position:fixed;inset:0;z-index:9999;
-  background:linear-gradient(180deg,#CC0000 0%,#FF4500 35%,#FF6B00 60%,#FFD700 100%);
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  display:flex;flex-direction:column;align-items:center;
   overflow:hidden;transition:opacity 0.8s ease;
+  background:#CC0000;
 }
 #splash.hide{opacity:0;pointer-events:none}
-
-/* Decorative top border like Nithra */
-.sp-top-border{
-  width:100%;height:50px;
-  background:repeating-linear-gradient(90deg,#8B0000 0px,#8B0000 10px,#FFD700 10px,#FFD700 20px,#FF6B00 20px,#FF6B00 30px,#FFD700 30px,#FFD700 40px);
-  opacity:0.6;flex-shrink:0;
+#splashImg{width:100%;height:100%;object-fit:cover;object-position:center top}
+.sp-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,#FFD700 60%);
+  padding:20px 20px 30px;text-align:center;
 }
-.sp-bells{display:flex;justify-content:space-between;width:100%;padding:0 20px;margin-top:-10px}
-.sp-bell{font-size:28px;animation:bellswing 2s ease-in-out infinite}
-.sp-bell:nth-child(2){animation-delay:.3s}
-.sp-bell:nth-child(3){animation-delay:.6s}
-@keyframes bellswing{0%,100%{transform:rotate(-15deg)}50%{transform:rotate(15deg)}}
-
-.sp-om{font-size:36px;color:#FFF8E7;margin:6px 0;text-shadow:0 0 20px rgba(255,215,0,0.8);animation:pulse 1.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-
-/* BIG Vinayagar SVG */
-.sp-ganesha-wrap{width:220px;height:220px;margin:4px auto;position:relative}
-.sp-ganesha-svg{width:100%;height:100%;filter:drop-shadow(0 0 30px rgba(255,215,0,0.9));animation:glow 2s ease-in-out infinite}
-@keyframes glow{0%,100%{filter:drop-shadow(0 0 20px rgba(255,215,0,0.7))}50%{filter:drop-shadow(0 0 50px rgba(255,215,0,1))}}
-
-.sp-flowers{display:flex;justify-content:center;gap:6px;font-size:18px;margin:4px 0}
-
-.sp-title{font-family:'Noto Serif Tamil',serif;font-size:36px;color:#FFF8E7;font-weight:700;letter-spacing:2px;text-shadow:0 2px 8px rgba(0,0,0,0.4)}
-.sp-sub{font-family:'Noto Serif Tamil',serif;font-size:14px;color:#FFF8E7;margin-top:3px;opacity:0.9}
-
-.sp-mantra{
-  font-family:'Noto Serif Tamil',serif;font-size:13px;color:#FFF8E7;
-  text-align:center;line-height:2;margin:8px 20px;
-  background:rgba(139,0,0,0.3);border-radius:10px;padding:10px 14px;
-  border:1px solid rgba(255,215,0,0.4);
-}
-
-.sp-tagline{
-  font-family:'Noto Serif Tamil',serif;font-size:14px;font-weight:700;
-  color:#FFD700;margin:6px 0;text-align:center;
-  text-shadow:0 2px 4px rgba(0,0,0,0.5);
-}
-
-.sp-dots{display:flex;gap:8px;margin:10px 0}
-.sp-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);animation:dp 1.2s ease-in-out infinite}
+.sp-tagline{font-family:'Noto Serif Tamil',serif;font-size:22px;font-weight:700;color:#8B0000;margin-bottom:6px}
+.sp-app-name{font-family:'Noto Serif Tamil',serif;font-size:32px;font-weight:700;color:#8B0000}
+.sp-sub{font-size:13px;color:#5B0000;font-family:'Noto Serif Tamil',serif;margin-top:2px}
+.sp-dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.sp-dot{width:10px;height:10px;border-radius:50%;background:rgba(139,0,0,0.3);animation:dp 1.2s ease-in-out infinite}
 .sp-dot:nth-child(2){animation-delay:.2s}
 .sp-dot:nth-child(3){animation-delay:.4s}
-@keyframes dp{0%,100%{background:rgba(255,255,255,0.3);transform:scale(1)}50%{background:#FFD700;transform:scale(1.4)}}
+@keyframes dp{0%,100%{background:rgba(139,0,0,0.3);transform:scale(1)}50%{background:#8B0000;transform:scale(1.4)}}
+/* Fallback if no image */
+.sp-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:linear-gradient(180deg,#CC0000,#FF4500,#FFD700)}
+.sp-fall-ganesha{font-size:120px;filter:drop-shadow(0 0 30px rgba(255,215,0,0.8));animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 20px rgba(255,215,0,0.6))}50%{filter:drop-shadow(0 0 50px rgba(255,215,0,1))}}
+.sp-fall-title{font-family:'Noto Serif Tamil',serif;font-size:36px;color:#FFF8E7;font-weight:700;margin-top:10px}
+.sp-fall-sub{font-family:'Noto Serif Tamil',serif;font-size:14px;color:#FFD700;margin-top:6px;text-align:center;line-height:1.8}
 
-.sp-version{font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px}
-
-/* ===== APP ===== */
+/* APP */
 .app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--bg)}
-
-/* Header */
 .hdr{background:linear-gradient(135deg,#6B0000,#8B0000,#CC5500);flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
 .hdr-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 6px}
 .logo-wrap{display:flex;align-items:center;gap:8px}
@@ -95,8 +67,6 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .lang-sw{display:flex;background:rgba(0,0,0,0.2);border-radius:16px;padding:2px;gap:2px}
 .lb{padding:3px 10px;border-radius:14px;border:none;font-size:11px;cursor:pointer;background:transparent;color:rgba(255,248,231,0.8);font-family:'Lato',sans-serif;transition:all .2s}
 .lb.on{background:#FFF8E7;color:var(--maroon);font-weight:700}
-
-/* Date Nav */
 .date-nav{background:rgba(0,0,0,0.18);padding:7px 12px;display:flex;align-items:center;gap:6px;border-top:0.5px solid rgba(255,255,255,0.15)}
 .dn-arrow{background:rgba(255,255,255,0.18);border:none;color:#FFF8E7;font-size:20px;width:32px;height:32px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .dn-center{flex:1;text-align:center;cursor:pointer}
@@ -105,91 +75,96 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .dn-today{background:var(--gold);border:none;color:var(--maroon);font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;display:none}
 .dpw{display:none;background:rgba(0,0,0,0.25);padding:6px 14px}
 .dpi{width:100%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:8px 12px;color:#FFF8E7;font-size:14px;outline:none}
-
-/* Content */
 .content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:68px}
 .content::-webkit-scrollbar{width:0}
 .page{display:none}
 .page.on{display:block}
 .spc{height:10px}
 
-/* Common card styles */
-.c-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(139,0,0,0.12);border:1px solid var(--border);margin:0 10px 10px}
+/* Cards */
+.c-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(139,0,0,0.1);border:1px solid var(--border);margin:0 10px 10px}
 .c-hdr{padding:9px 14px;display:flex;justify-content:space-between;align-items:center}
 .c-hdr.maroon{background:linear-gradient(135deg,#8B0000,#CC5500)}
 .c-hdr.red{background:linear-gradient(135deg,#CC0000,#FF4500)}
 .c-hdr.gold{background:linear-gradient(135deg,#CC8800,#D4AF37)}
 .c-hdr.green{background:linear-gradient(135deg,#006400,#228B22)}
-.c-hdr.saffron{background:linear-gradient(135deg,#CC5500,#D4AF37)}
 .c-hdr.pink{background:linear-gradient(135deg,#C2185B,#D81B60)}
+.c-hdr.blue{background:linear-gradient(135deg,#1565C0,#1976D2)}
+.c-hdr.purple{background:linear-gradient(135deg,#6A1B9A,#8E24AA)}
 .c-title{font-size:13px;font-weight:700;font-family:'Noto Serif Tamil',serif;color:#FFF8E7}
 .c-badge{background:rgba(255,255,255,0.2);border-radius:6px;padding:2px 8px;font-size:11px;color:#FFF8E7}
 
-/* ===== NAL KATTI - Nithra style ===== */
-/* Big date header */
-.nk-date-box{background:linear-gradient(135deg,#CC0000,#FF4500);margin:10px;border-radius:12px;padding:12px 16px;text-align:center;position:relative}
+/* NAL KATTI */
+.nk-date-box{background:linear-gradient(135deg,#CC0000,#FF4500);margin:10px;border-radius:12px;padding:12px 16px;text-align:center}
 .nk-month-day{font-size:13px;color:#FFF8E7;font-family:'Noto Serif Tamil',serif;opacity:0.9}
-.nk-big-date{font-size:32px;font-weight:700;color:#FFF8E7;letter-spacing:2px;margin:4px 0;font-family:'Lato',sans-serif}
-.nk-tamil-line{font-size:12px;color:#FFF8E7;font-family:'Noto Serif Tamil',serif;opacity:0.9}
-.nk-nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.nk-nav-row{display:flex;justify-content:space-between;align-items:center;margin:4px 0}
+.nk-big-date{font-size:30px;font-weight:700;color:#FFF8E7;letter-spacing:2px}
 .nk-nav-btn{background:rgba(255,255,255,0.25);border:none;color:#FFF8E7;font-size:22px;width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.nk-today-pill{background:rgba(255,255,255,0.25);border:none;color:#FFF8E7;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;cursor:pointer;font-family:'Noto Serif Tamil',serif}
+.nk-tamil-line{font-size:12px;color:#FFF8E7;font-family:'Noto Serif Tamil',serif;opacity:0.9;margin-top:3px}
 
-/* Moon/Sun rise */
+/* Astro row */
 .nk-astro-row{display:flex;gap:8px;margin:0 10px 8px}
 .nk-astro-item{flex:1;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px;text-align:center}
-.nk-astro-icon{font-size:20px;display:block;margin-bottom:3px}
-.nk-astro-lbl{font-size:10px;color:var(--text3);font-family:'Noto Serif Tamil',serif}
-.nk-astro-val{font-size:13px;color:var(--maroon);font-weight:700}
+.nk-astro-icon{font-size:18px;display:block;margin-bottom:2px}
+.nk-astro-lbl{font-size:9px;color:var(--text3);font-family:'Noto Serif Tamil',serif}
+.nk-astro-val{font-size:12px;color:var(--maroon);font-weight:700}
 
-/* Nalla Neram */
+/* Neram card */
 .nk-neram-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:0 10px 8px}
-.nk-neram-hdr{background:linear-gradient(135deg,#CC0000,#FF4500);padding:8px 14px;text-align:center;font-size:13px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif}
-.nk-neram-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:0.5px solid #F0E0B0}
+.nk-neram-hdr{padding:8px 14px;text-align:center;font-size:13px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif}
+.nk-neram-hdr.good{background:linear-gradient(135deg,#CC0000,#FF4500)}
+.nk-neram-hdr.gowri{background:linear-gradient(135deg,#006400,#228B22)}
+.nk-neram-row{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-bottom:0.5px solid #F0E0B0}
 .nk-neram-row:last-child{border-bottom:none}
 .nk-neram-lbl{font-size:13px;color:var(--text);font-family:'Noto Serif Tamil',serif}
 .nk-neram-val{font-size:13px;font-weight:700;color:var(--maroon)}
 
-/* Rahu Kalam Nithra style */
+/* Rahu table */
 .nk-rahu-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:0 10px 8px}
 .nk-rahu-hdr-row{display:grid;grid-template-columns:1fr 1fr 1fr;background:linear-gradient(135deg,#CC0000,#FF4500)}
 .nk-rahu-th{padding:8px 4px;text-align:center;font-size:12px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif;border-right:1px solid rgba(255,255,255,0.2)}
 .nk-rahu-th:last-child{border-right:none}
 .nk-rahu-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:0.5px solid #F0E0B0}
 .nk-rahu-row:last-child{border-bottom:none}
-.nk-rahu-td{padding:8px 4px;text-align:center;font-size:12px;color:var(--text);border-right:0.5px solid #F0E0B0;font-family:'Noto Serif Tamil',serif}
+.nk-rahu-td{padding:8px 4px;text-align:center;font-size:11px;color:var(--text);border-right:0.5px solid #F0E0B0;font-family:'Noto Serif Tamil',serif;line-height:1.4}
 .nk-rahu-td:last-child{border-right:none}
 .nk-rahu-td.bad{color:#CC0000;font-weight:700}
 .nk-rahu-td.good{color:#006400;font-weight:700}
 
-/* Panchangam details Nithra style */
-.nk-panch-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.nk-panch-item{padding:10px 14px;border-bottom:0.5px solid #F0E0B0;border-right:0.5px solid #F0E0B0}
-.nk-panch-item:nth-child(2n){border-right:none}
-.nk-panch-item:nth-last-child(-n+2){border-bottom:none}
-.nk-p-lbl{font-size:11px;color:var(--pink);font-family:'Noto Serif Tamil',serif;font-weight:700;margin-bottom:3px}
-.nk-p-val{font-size:12px;color:var(--text);font-family:'Noto Serif Tamil',serif;line-height:1.5}
+/* Panchangam 2-col detail Nithra style */
+.nk-2col{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.nk-2col-item{padding:10px 12px;border-bottom:0.5px solid #F0E0B0;border-right:0.5px solid #F0E0B0}
+.nk-2col-item:nth-child(2n){border-right:none}
+.nk-2col-item:nth-last-child(-n+2){border-bottom:none}
+.nk-p-lbl{font-size:11px;color:var(--pink);font-family:'Noto Serif Tamil',serif;font-weight:700;margin-bottom:4px}
+.nk-p-val{font-size:12px;color:var(--text);font-family:'Noto Serif Tamil',serif;line-height:1.6}
 
-/* Rashi summary table Nithra style */
+/* Chandrastamam */
+.nk-chand-box{background:linear-gradient(135deg,#1A237E,#283593);margin:0 10px 8px;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.nk-chand-icon{font-size:32px}
+.nk-chand-text div:first-child{font-size:13px;color:#FFF8E7;font-weight:700;font-family:'Noto Serif Tamil',serif}
+.nk-chand-text div:last-child{font-size:12px;color:rgba(255,248,231,0.8);font-family:'Noto Serif Tamil',serif;margin-top:3px;line-height:1.5}
+
+/* Star of the day */
+.nk-star-box{background:var(--card);border:1px solid var(--border);border-radius:12px;margin:0 10px 8px;overflow:hidden}
+.nk-star-hdr{background:linear-gradient(135deg,#4A148C,#6A1B9A);padding:8px 14px;font-size:13px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif}
+.nk-star-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.nk-star-item{padding:10px 8px;text-align:center;border-right:0.5px solid #F0E0B0;border-bottom:0.5px solid #F0E0B0}
+.nk-star-item:nth-child(3n){border-right:none}
+.nk-star-lbl{font-size:10px;color:var(--text3);font-family:'Noto Serif Tamil',serif;margin-bottom:3px}
+.nk-star-val{font-size:12px;color:#4A148C;font-weight:700;font-family:'Noto Serif Tamil',serif}
+
+/* Rashi summary */
 .nk-rashi-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:0 10px 8px}
 .nk-rashi-hdr{background:linear-gradient(135deg,#CC0000,#FF4500);padding:8px 14px;text-align:center;font-size:13px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif}
-.nk-rashi-grid{display:grid;grid-template-columns:1fr auto 1fr auto;gap:0}
-.nk-rashi-row{display:contents}
-.nk-r-name{padding:8px 10px;font-size:12px;color:var(--text);font-family:'Noto Serif Tamil',serif;border-bottom:0.5px solid #F0E0B0}
-.nk-r-palan{padding:8px 10px;font-size:12px;color:var(--maroon);font-family:'Noto Serif Tamil',serif;border-bottom:0.5px solid #F0E0B0;border-left:0.5px solid #F0E0B0;font-weight:700}
+.nk-rashi-rows{display:grid;grid-template-columns:1fr auto 1fr auto;gap:0}
+.nk-r-name{padding:7px 10px;font-size:12px;color:var(--text);font-family:'Noto Serif Tamil',serif;border-bottom:0.5px solid #F0E0B0}
+.nk-r-palan{padding:7px 10px;font-size:12px;color:var(--maroon);font-family:'Noto Serif Tamil',serif;border-bottom:0.5px solid #F0E0B0;border-left:0.5px solid #F0E0B0;font-weight:700}
 
-/* Pon Mozhi */
+/* Pon mozhi */
 .nk-ponmozhi{background:var(--card);border:1px solid var(--border);border-radius:12px;margin:0 10px 8px;padding:12px 14px}
 .nk-pm-title{font-size:13px;font-weight:700;color:var(--text);font-family:'Noto Serif Tamil',serif;margin-bottom:6px}
 .nk-pm-text{font-size:13px;color:var(--text2);font-family:'Noto Serif Tamil',serif;line-height:1.7}
-
-/* Panchangam tab */
-.panch-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.panch-item{padding:10px 14px;border-bottom:0.5px solid #F0E0B0;border-right:0.5px solid #F0E0B0}
-.panch-item:nth-child(2n){border-right:none}
-.panch-item:nth-last-child(-n+2){border-bottom:none}
-.p-lbl{font-size:10px;color:var(--text3);font-family:'Noto Serif Tamil',serif;margin-bottom:3px}
-.p-val{font-size:13px;color:var(--maroon);font-weight:700;font-family:'Noto Serif Tamil',serif}
 
 /* Rashi grid */
 .sec-hdr{background:linear-gradient(135deg,#8B0000,#6B0000);margin:0 10px 8px;border-radius:8px;padding:8px 14px}
@@ -202,8 +177,6 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .r-sym{font-size:19px;display:block;margin-bottom:2px}
 .r-n{font-size:9px;color:var(--maroon);font-family:'Noto Serif Tamil',serif;display:block;line-height:1.3;font-weight:700}
 .r-e{font-size:8px;color:var(--text3);display:block}
-
-/* Palan */
 .palan-body{padding:12px 14px}
 .palan-text{font-size:13px;color:var(--text);line-height:1.9;font-family:'Noto Serif Tamil',serif}
 .p-ph{font-size:13px;color:var(--text3);text-align:center;padding:16px 0;font-family:'Noto Serif Tamil',serif}
@@ -251,8 +224,6 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .res-big{font-size:28px;font-weight:700;color:var(--maroon);line-height:1}
 .res-lbl{font-size:10px;color:var(--text3);margin-top:3px;font-family:'Noto Serif Tamil',serif}
 .res-desc{font-size:11px;color:var(--text2);margin-top:4px;line-height:1.5;font-family:'Noto Serif Tamil',serif}
-
-/* Muhurtham */
 .muh-result{margin-top:12px;display:none}
 .muh-slot{border-radius:8px;padding:10px;margin-bottom:8px;border:1px solid}
 .muh-slot.good{background:#F0FFF0;border-color:#006400}
@@ -261,8 +232,6 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .muh-slot.good .muh-time{color:#006400}
 .muh-slot.bad .muh-time{color:#CC0000}
 .muh-desc{font-size:12px;color:var(--text2);margin-top:3px;font-family:'Noto Serif Tamil',serif}
-
-/* Navagraha */
 .nava-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px 10px}
 .nava-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .nava-hdr{background:linear-gradient(135deg,#8B0000,#D4AF37);padding:7px 10px}
@@ -271,11 +240,8 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .nava-day{font-size:11px;color:var(--text2);font-family:'Noto Serif Tamil',serif}
 .nava-time{font-size:12px;color:var(--maroon);margin-top:2px;font-weight:700}
 .nava-mantra{font-size:10px;color:var(--text3);margin-top:4px;font-family:'Noto Serif Tamil',serif;line-height:1.5}
-
-/* Dream + Porutham */
 .dream-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
 .dream-btn{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .2s}
-.dream-btn:active{transform:scale(0.96)}
 .dream-btn.sel{background:linear-gradient(135deg,#8B0000,#CC5500);border-color:#8B0000}
 .dream-btn.sel .dream-name{color:#FFF8E7}
 .dream-icon{font-size:22px;display:block;margin-bottom:4px}
@@ -292,180 +258,38 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .por-score{font-size:24px;font-weight:700;color:var(--maroon);text-align:center;margin:10px 0 4px}
 .por-verdict{font-size:13px;color:var(--text2);text-align:center;font-family:'Noto Serif Tamil',serif;margin-bottom:10px}
 
-/* ===== BOTTOM NAV — PROPERLY FIXED ===== */
+/* BOTTOM NAV — grid, never overflows */
 .bnav{
   position:fixed;bottom:0;left:50%;transform:translateX(-50%);
   width:100%;max-width:480px;
   background:linear-gradient(135deg,#5B0000,#8B0000);
   border-top:2px solid var(--gold);
-  display:grid;
-  grid-template-columns:repeat(6,1fr);/* Equal columns — never overflow */
+  display:grid;grid-template-columns:repeat(6,1fr);
   align-items:center;
   padding:5px 0 max(8px,env(safe-area-inset-bottom));
   z-index:100;
 }
-.bi{
-  display:flex;flex-direction:column;align-items:center;gap:2px;
-  cursor:pointer;opacity:.5;transition:all .2s;
-  border:none;background:transparent;padding:2px 0;
-  width:100%;
-}
+.bi{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;opacity:.5;transition:all .2s;border:none;background:transparent;padding:2px 0;width:100%}
 .bi.on{opacity:1}
 .bi-ic{font-size:16px;line-height:1}
-.bi-lb{
-  font-size:8px;
-  color:#F5D76E;
-  font-family:'Noto Serif Tamil',serif;
-  text-align:center;
-  width:100%;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  padding:0 2px;
-}
+.bi-lb{font-size:8px;color:#F5D76E;font-family:'Noto Serif Tamil',serif;text-align:center;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
 .bi.on .bi-lb{color:#FFF8E7;font-weight:700}
-
 @media(min-width:480px){.app{border-left:1px solid var(--border);border-right:1px solid var(--border)}}
 </style>
 </head>
 <body>
 
-<!-- ===== SPLASH SCREEN ===== -->
+<!-- SPLASH -->
 <div id="splash">
-  <div class="sp-top-border"></div>
-  <div class="sp-bells"><span class="sp-bell">🔔</span><span class="sp-bell">🔔</span><span class="sp-bell">🔔</span></div>
-  <div class="sp-om">ॐ</div>
-
-  <!-- Vinayagar SVG — detailed and colorful like the image -->
-  <div class="sp-ganesha-wrap">
-    <svg class="sp-ganesha-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-      <!-- Body glow bg -->
-      <ellipse cx="100" cy="160" rx="65" ry="55" fill="#FFD700" opacity="0.3"/>
-      <!-- Lotus seat -->
-      <ellipse cx="100" cy="205" rx="60" ry="14" fill="#FFB300"/>
-      <ellipse cx="100" cy="205" rx="50" ry="10" fill="#FFC107"/>
-      <!-- Petals -->
-      <ellipse cx="60" cy="200" rx="18" ry="8" fill="#FF8F00" transform="rotate(-30 60 200)"/>
-      <ellipse cx="140" cy="200" rx="18" ry="8" fill="#FF8F00" transform="rotate(30 140 200)"/>
-      <ellipse cx="100" cy="200" rx="20" ry="8" fill="#FFCA28"/>
-
-      <!-- Body (golden) -->
-      <ellipse cx="100" cy="165" rx="52" ry="48" fill="#FFD700"/>
-      <ellipse cx="100" cy="158" rx="48" ry="44" fill="#FFC107"/>
-
-      <!-- Decorative belly -->
-      <ellipse cx="100" cy="170" rx="28" ry="25" fill="#FFB300" opacity="0.6"/>
-      <circle cx="100" cy="168" r="10" fill="#FF8F00" opacity="0.5"/>
-
-      <!-- Arms -->
-      <!-- Left arm up -->
-      <ellipse cx="55" cy="135" rx="16" ry="10" fill="#FFD700" transform="rotate(-45 55 135)"/>
-      <ellipse cx="42" cy="120" rx="14" ry="9" fill="#FFC107" transform="rotate(-60 42 120)"/>
-      <circle cx="34" cy="108" r="10" fill="#FFD700"/>
-
-      <!-- Right arm up -->
-      <ellipse cx="145" cy="135" rx="16" ry="10" fill="#FFD700" transform="rotate(45 145 135)"/>
-      <ellipse cx="158" cy="120" rx="14" ry="9" fill="#FFC107" transform="rotate(60 158 120)"/>
-      <circle cx="166" cy="108" r="10" fill="#FFD700"/>
-
-      <!-- Left arm down -->
-      <ellipse cx="60" cy="178" rx="14" ry="9" fill="#FFD700" transform="rotate(20 60 178)"/>
-      <!-- Right arm down -->
-      <ellipse cx="140" cy="178" rx="14" ry="9" fill="#FFD700" transform="rotate(-20 140 178)"/>
-
-      <!-- Modak in right lower hand -->
-      <ellipse cx="150" cy="190" rx="10" ry="12" fill="#F57F17"/>
-      <ellipse cx="150" cy="185" rx="8" ry="6" fill="#FF8F00"/>
-
-      <!-- Neck -->
-      <ellipse cx="100" cy="120" rx="22" ry="15" fill="#FFD700"/>
-
-      <!-- Garland -->
-      <path d="M78 125 Q100 135 122 125" stroke="#E91E63" stroke-width="3" fill="none"/>
-      <circle cx="85" cy="130" r="3" fill="#F44336"/>
-      <circle cx="93" cy="133" r="3" fill="#4CAF50"/>
-      <circle cx="100" cy="134" r="3" fill="#F44336"/>
-      <circle cx="107" cy="133" r="3" fill="#4CAF50"/>
-      <circle cx="115" cy="130" r="3" fill="#F44336"/>
-
-      <!-- Head -->
-      <ellipse cx="100" cy="95" rx="38" ry="40" fill="#FFD700"/>
-      <ellipse cx="100" cy="90" rx="34" ry="36" fill="#FFC107"/>
-
-      <!-- Elephant face details -->
-      <!-- Eyes -->
-      <ellipse cx="84" cy="82" rx="9" ry="10" fill="white"/>
-      <ellipse cx="116" cy="82" rx="9" ry="10" fill="white"/>
-      <circle cx="86" cy="83" r="6" fill="#1A237E"/>
-      <circle cx="118" cy="83" r="6" fill="#1A237E"/>
-      <circle cx="87" cy="82" r="3" fill="black"/>
-      <circle cx="119" cy="82" r="3" fill="black"/>
-      <circle cx="88" cy="81" r="1.5" fill="white"/>
-      <circle cx="120" cy="81" r="1.5" fill="white"/>
-
-      <!-- Tilak on forehead -->
-      <ellipse cx="100" cy="70" rx="8" ry="5" fill="#CC0000"/>
-      <ellipse cx="100" cy="70" rx="5" ry="3" fill="#FF4500"/>
-
-      <!-- Ears (large) -->
-      <ellipse cx="64" cy="90" rx="22" ry="28" fill="#FFB300"/>
-      <ellipse cx="136" cy="90" rx="22" ry="28" fill="#FFB300"/>
-      <ellipse cx="64" cy="90" rx="16" ry="22" fill="#FFC107"/>
-      <ellipse cx="136" cy="90" rx="16" ry="22" fill="#FFC107"/>
-      <!-- Ear inner -->
-      <ellipse cx="64" cy="92" rx="10" ry="14" fill="#FF8F00" opacity="0.5"/>
-      <ellipse cx="136" cy="92" rx="10" ry="14" fill="#FF8F00" opacity="0.5"/>
-
-      <!-- Trunk (curved down) -->
-      <path d="M90 105 Q70 130 75 155 Q78 165 88 162" stroke="#FFB300" stroke-width="12" fill="none" stroke-linecap="round"/>
-      <path d="M90 105 Q70 130 75 155 Q78 165 88 162" stroke="#FFC107" stroke-width="8" fill="none" stroke-linecap="round"/>
-
-      <!-- Crown -->
-      <ellipse cx="100" cy="57" rx="30" ry="12" fill="#FFD700"/>
-      <rect x="78" y="38" width="44" height="22" rx="4" fill="#FFD700"/>
-      <!-- Crown jewels -->
-      <circle cx="100" cy="45" r="6" fill="#E91E63"/>
-      <circle cx="86" cy="47" r="4" fill="#2196F3"/>
-      <circle cx="114" cy="47" r="4" fill="#4CAF50"/>
-      <!-- Crown tip -->
-      <polygon points="100,22 93,38 107,38" fill="#FFD700"/>
-      <circle cx="100" cy="22" r="4" fill="#FF8F00"/>
-
-      <!-- Jewelry - necklace -->
-      <path d="M82 116 Q100 122 118 116" stroke="#FFD700" stroke-width="2" fill="none"/>
-      <circle cx="90" cy="119" r="2" fill="#FFD700"/>
-      <circle cx="100" cy="121" r="3" fill="#FF8F00"/>
-      <circle cx="110" cy="119" r="2" fill="#FFD700"/>
-
-      <!-- Mouse (Vahana) -->
-      <ellipse cx="80" cy="205" rx="12" ry="7" fill="#757575"/>
-      <circle cx="72" cy="202" r="5" fill="#757575"/>
-      <circle cx="70" cy="200" r="2" fill="#212121"/>
-      <path d="M68 200 Q62 195 60 198" stroke="#757575" stroke-width="1.5" fill="none"/>
-
-      <!-- Lamps on sides -->
-      <rect x="22" y="175" width="4" height="20" fill="#FFB300"/>
-      <ellipse cx="24" cy="175" rx="6" ry="4" fill="#FFC107"/>
-      <ellipse cx="24" cy="172" rx="3" ry="4" fill="#FF8F00" opacity="0.8"/>
-      <rect x="174" y="175" width="4" height="20" fill="#FFB300"/>
-      <ellipse cx="176" cy="175" rx="6" ry="4" fill="#FFC107"/>
-      <ellipse cx="176" cy="172" rx="3" ry="4" fill="#FF8F00" opacity="0.8"/>
-    </svg>
+  <img id="splashImg" src="splash.jpg" alt="" onerror="showFallback()"/>
+  <div class="sp-overlay">
+    <div class="sp-tagline">வளமும் நலமும் பெறுக</div>
+    <div class="sp-app-name">ஆர்விகா</div>
+    <div class="sp-sub">Tamil Astrology App</div>
+    <div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
   </div>
-
-  <div class="sp-flowers">🌸 🌺 🌸 🌺 🌸</div>
-  <div class="sp-title">ஆர்விகா</div>
-  <div class="sp-sub">Tamil Astrology App</div>
-  <div class="sp-tagline">வளமும் நலமும் பெறுக</div>
-  <div class="sp-mantra">
-    வக்ரதுண்ட மஹாகாய சூர்யகோடி சமப்ரப<br/>
-    நிர்விக்னம் குரு மே தேவ சர்வகார்யேஷு சர்வதா
-  </div>
-  <div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
-  <div class="sp-version">ஆர்விகா v1.0</div>
 </div>
 
-<!-- ===== APP ===== -->
 <div class="app">
   <div class="hdr">
     <div class="hdr-top">
@@ -493,36 +317,22 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
       <button class="dn-today" onclick="goToday()" id="today-btn">இன்று</button>
       <button class="dn-arrow" onclick="changeDate(1)">›</button>
     </div>
-    <div class="dpw" id="dpw">
-      <input type="date" class="dpi" id="dpi" onchange="pickDate(this.value)"/>
-    </div>
+    <div class="dpw" id="dpw"><input type="date" class="dpi" id="dpi" onchange="pickDate(this.value)"/></div>
   </div>
 
   <div class="content">
 
-    <!-- PAGE 0: NAL KATTI (Nithra style) -->
+    <!-- PAGE 0: NAL KATTI -->
     <div class="page on" id="pg0">
-      <!-- Big date header -->
       <div class="nk-date-box" id="nkDateBox"></div>
-
-      <!-- Sun & Moon rise -->
       <div class="nk-astro-row" id="nkAstroRow"></div>
-
-      <!-- Nalla Neram -->
       <div class="nk-neram-card" id="nkNeramCard"></div>
-
-      <!-- Rahu Kalam table -->
       <div class="nk-rahu-table" id="nkRahuTable"></div>
-
-      <!-- Panchangam details -->
+      <div class="nk-star-box" id="nkStarBox"></div>
+      <div class="nk-chand-box" id="nkChandBox"></div>
       <div class="c-card" id="nkPanchCard"></div>
-
-      <!-- Rashi summary table -->
       <div class="nk-rashi-table" id="nkRashiTable"></div>
-
-      <!-- Pon Mozhi -->
       <div class="nk-ponmozhi" id="nkPonmozhi"></div>
-
       <div class="spc"></div>
     </div>
 
@@ -547,14 +357,11 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
       </div>
       <div class="cal-grid" id="calDayHdrs"></div>
       <div class="cal-grid" id="calGrid"></div>
-      <div class="fest-card">
-        <div class="fest-card-hdr">🎊 திருவிழாக்கள்</div>
-        <div id="festList"></div>
-      </div>
+      <div class="fest-card"><div class="fest-card-hdr">🎊 திருவிழாக்கள்</div><div id="festList"></div></div>
       <div class="spc"></div>
     </div>
 
-    <!-- PAGE 3: MUHURTHAM + NAVAGRAHA -->
+    <!-- PAGE 3: MUHURTHAM + NAVA -->
     <div class="page" id="pg3">
       <div class="spc"></div>
       <div class="c-card">
@@ -640,7 +447,6 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 
   </div>
 
-  <!-- BOTTOM NAV — grid layout prevents overflow -->
   <div class="bnav">
     <button class="bi on" id="bi0" onclick="showPage(0)"><span class="bi-ic">📋</span><span class="bi-lb">நால்காட்டி</span></button>
     <button class="bi" id="bi1" onclick="showPage(1)"><span class="bi-ic">🔯</span><span class="bi-lb">ராசி பலன்</span></button>
@@ -652,7 +458,6 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 </div>
 
 <script>
-/* ===== DATA ===== */
 const TM=['சித்திரை','வைகாசி','ஆனி','ஆடி','ஆவணி','புரட்டாசி','ஐப்பசி','கார்த்திகை','மார்கழி','தை','மாசி','பங்குனி'];
 const TD=['ஞாயிறு','திங்கள்','செவ்வாய்','புதன்','வியாழன்','வெள்ளி','சனி'];
 const TDS=['ஞா','தி','செ','பு','வி','வெ','ச'];
@@ -664,91 +469,62 @@ const YOGS=['விஷ்கம்பம்','பிரீதி','ஆயுஷ�
 const KARS=['கிம்ஸ்துக்னம்','பவம்','பாலவம்','கௌலவம்','தைதிலம்','கரஜம்','வணிஜம்'];
 const RTA=[{s:'♈',n:'மேஷம்',e:'Aries'},{s:'♉',n:'ரிஷபம்',e:'Taurus'},{s:'♊',n:'மிதுனம்',e:'Gemini'},{s:'♋',n:'கடகம்',e:'Cancer'},{s:'♌',n:'சிம்மம்',e:'Leo'},{s:'♍',n:'கன்னி',e:'Virgo'},{s:'♎',n:'துலாம்',e:'Libra'},{s:'♏',n:'விருச்சிகம்',e:'Scorpio'},{s:'♐',n:'தனுசு',e:'Sagittarius'},{s:'♑',n:'மகரம்',e:'Capricorn'},{s:'♒',n:'கும்பம்',e:'Aquarius'},{s:'♓',n:'மீனம்',e:'Pisces'}];
 const REN=[{s:'♈',n:'Mesham',e:'Aries'},{s:'♉',n:'Rishabam',e:'Taurus'},{s:'♊',n:'Mithunam',e:'Gemini'},{s:'♋',n:'Kadagam',e:'Cancer'},{s:'♌',n:'Simmam',e:'Leo'},{s:'♍',n:'Kanni',e:'Virgo'},{s:'♎',n:'Thulam',e:'Libra'},{s:'♏',n:'Viruchigam',e:'Scorpio'},{s:'♐',n:'Dhanushu',e:'Sagittarius'},{s:'♑',n:'Magaram',e:'Capricorn'},{s:'♒',n:'Kumbam',e:'Aquarius'},{s:'♓',n:'Meenam',e:'Pisces'}];
-const PAL=['இன்று உங்களுக்கு மிகவும் சிறந்த நாள்! தொழிலில் புதிய வாய்ப்புகள் வரும். பண வரவு நல்லது.','இன்று சற்று கவனமாக இருக்கவும். உடல் ஆரோக்கியத்தை கவனியுங்கள். நண்பர்களால் நன்மை.','புதிய வாய்ப்புகள் கதவு தட்டும். தைரியமாக முடிவெடுங்கள். காதல் விஷயங்களில் வெற்றி.','இன்று நடுத்தரமான நாள். வீட்டில் சண்டைகளை தவிர்க்கவும்.','அரசு விஷயங்களில் வெற்றி. தொழிலில் புதிய ஒப்பந்தம் வரும்.','உடல் உழைப்பு அதிகமாகும். ஆன்மீக நடவடிக்கைகளில் ஈடுபடுங்கள்.','நீதி விஷயங்களில் வெற்றி. வியாபாரத்தில் நல்ல லாபம்.','மறைவான எதிரிகளை கவனிக்கவும். ஆராய்ச்சி வேலைகளில் வெற்றி.','வெளிநாட்டு தொடர்புகளால் நன்மை. புதிய கல்வி வாய்ப்புகள்.','தொழிலில் உயர்வு. மேலதிகாரிகளால் அங்கீகாரம்.','மனதில் புதுவித சிந்தனைகள். நண்பர் வட்டம் விரிவடையும்.','ஆன்மீக ஞானம். கலை திறன்கள் வெளிப்படும்.'];
+const PAL=['இன்று உங்களுக்கு மிகவும் சிறந்த நாள்! தொழிலில் புதிய வாய்ப்புகள் வரும். பண வரவு நல்லது.','இன்று சற்று கவனமாக இருக்கவும். உடல் ஆரோக்கியத்தை கவனியுங்கள்.','புதிய வாய்ப்புகள் கதவு தட்டும். தைரியமாக முடிவெடுங்கள்.','இன்று நடுத்தரமான நாள். வீட்டில் சண்டைகளை தவிர்க்கவும்.','அரசு விஷயங்களில் வெற்றி. தொழிலில் புதிய ஒப்பந்தம் வரும்.','உடல் உழைப்பு அதிகமாகும். ஆன்மீக நடவடிக்கைகளில் ஈடுபடுங்கள்.','நீதி விஷயங்களில் வெற்றி. வியாபாரத்தில் நல்ல லாபம்.','மறைவான எதிரிகளை கவனிக்கவும். ஆராய்ச்சி வேலைகளில் வெற்றி.','வெளிநாட்டு தொடர்புகளால் நன்மை. புதிய கல்வி வாய்ப்புகள்.','தொழிலில் உயர்வு. மேலதிகாரிகளால் அங்கீகாரம்.','மனதில் புதுவித சிந்தனைகள். நண்பர் வட்டம் விரிவடையும்.','ஆன்மீக ஞானம். கலை திறன்கள் வெளிப்படும்.'];
 const LK=[{c:'சிவப்பு',n:'9',t:'9-11 AM'},{c:'வெள்ளை',n:'6',t:'4-6 PM'},{c:'பச்சை',n:'5',t:'10-12 AM'},{c:'வெள்ளி',n:'4',t:'2-4 PM'},{c:'தங்கம்',n:'1',t:'6-8 AM'},{c:'நீலம்',n:'2',t:'5-7 PM'},{c:'வெண்மை',n:'7',t:'8-10 AM'},{c:'சிவப்பு',n:'9',t:'8-10 PM'},{c:'மஞ்சள்',n:'3',t:'7-9 AM'},{c:'கருப்பு',n:'8',t:'12-2 PM'},{c:'நீலம்',n:'4',t:'6-8 PM'},{c:'மஞ்சள்',n:'3',t:'9-11 AM'}];
 const RAHU=[[7.5,9],[15,16.5],[12,13.5],[10.5,12],[13.5,15],[10.5,12],[9,10.5]];
 const YAMA=[[12,13.5],[10.5,12],[9,10.5],[7.5,9],[15,16.5],[13.5,15],[12,13.5]];
 const KULI=[[13.5,15],[9,10.5],[10.5,12],[15,16.5],[10.5,12],[7.5,9],[13.5,15]];
-
-/* Nalla Neram by day */
-const NALLA_NERAM=[
-  {k:'7:30-8:30',m:'4:30-5:30'},{k:'5:30-6:30',m:'3:30-4:30'},
-  {k:'6:00-7:00',m:'4:00-5:00'},{k:'7:30-8:30',m:'4:30-5:30'},
-  {k:'6:30-7:30',m:'3:00-4:00'},{k:'7:30-8:30',m:'4:30-5:30'},
-  {k:'6:00-7:00',m:'5:00-6:00'}
-];
-const GOWRI_NERAM=[
-  {k:'10:30-11:30',m:'7:30-8:30'},{k:'8:00-9:00',m:'6:00-7:00'},
-  {k:'9:00-10:00',m:'7:00-8:00'},{k:'10:30-11:30',m:'8:00-9:00'},
-  {k:'9:30-10:30',m:'6:30-7:30'},{k:'10:30-11:30',m:'7:30-8:30'},
-  {k:'9:00-10:00',m:'6:00-7:00'}
-];
-
-/* Sun rise by month approx */
+const NALLA=[[{k:'7:30-8:30',m:'4:30-5:30'},{k:'10:30-11:30',m:'7:30-8:30'}],[{k:'5:30-6:30',m:'3:30-4:30'},{k:'8:00-9:00',m:'6:00-7:00'}],[{k:'6:00-7:00',m:'4:00-5:00'},{k:'9:00-10:00',m:'7:00-8:00'}],[{k:'7:30-8:30',m:'4:30-5:30'},{k:'10:30-11:30',m:'8:00-9:00'}],[{k:'6:30-7:30',m:'3:00-4:00'},{k:'9:30-10:30',m:'6:30-7:30'}],[{k:'7:30-8:30',m:'4:30-5:30'},{k:'10:30-11:30',m:'7:30-8:30'}],[{k:'6:00-7:00',m:'5:00-6:00'},{k:'9:00-10:00',m:'6:00-7:00'}]];
 const SUNRISE=['6:17','6:08','6:01','5:52','5:47','5:48','5:55','6:02','6:07','6:13','6:17','6:18'];
 const SUNSET=['17:58','18:12','18:21','18:30','18:40','18:47','18:45','18:32','18:15','17:59','17:50','17:52'];
-
-const PON_MOZHI=[
-  'கட்டுப்பாடற்றவன் கௌரவம் இழப்பான்.',
-  'நேர்மையான வாழ்வே சிறந்த வாழ்வு.',
-  'உழைப்பே உயர்வுக்கு வழி.',
-  'அன்பே ஆயுதம் — வெற்றியும் அன்னை.',
-  'கல்வியே கண்ணொளி — அறிவே அரண்.',
-  'பொறுமையே பலம் — சினமே தோல்வி.',
-  'நேற்றை மறந்து நாளையை நம்பு.',
-];
-
+/* Chandrastamam rashi for each nakshatra (4th from janma rashi roughly) */
+const NAK_RASHI=['மேஷம்','மேஷம்','ரிஷபம்','ரிஷபம்','மிதுனம்','மிதுனம்','கடகம்','கடகம்','கடகம்','சிம்மம்','சிம்மம்','கன்னி','கன்னி','துலாம்','துலாம்','விருச்சிகம்','விருச்சிகம்','விருச்சிகம்','தனுசு','தனுசு','மகரம்','மகரம்','கும்பம்','கும்பம்','மீனம்','மீனம்','மேஷம்'];
+/* Chandrastamam: 8th from moon sign */
+const CHAND_8TH=['விருச்சிகம்','தனுசு','மகரம்','கும்பம்','மீனம்','மேஷம்','ரிஷபம்','மிதுனம்','கடகம்','சிம்மம்','கன்னி','துலாம்'];
+const RASHI_NAMES_TA=['மேஷம்','ரிஷபம்','மிதுனம்','கடகம்','சிம்மம்','கன்னி','துலாம்','விருச்சிகம்','தனுசு','மகரம்','கும்பம்','மீனம்'];
+const RASHI_KW=['நலம்','பிரீதி','நட்பு','வெற்றி','அன்பு','சுகம்','பெருமை','ஆதரவு','லாபம்','உயர்வு','அமைதி','புகழ்'];
+const PON_MOZHI=['கட்டுப்பாடற்றவன் கௌரவம் இழப்பான்.','நேர்மையான வாழ்வே சிறந்த வாழ்வு.','உழைப்பே உயர்வுக்கு வழி.','அன்பே ஆயுதம் — வெற்றியும் அன்னை.','கல்வியே கண்ணொளி — அறிவே அரண்.','பொறுமையே பலம் — சினமே தோல்வி.','நேற்றை மறந்து நாளையை நம்பு.'];
 const FESTS=[{d:14,m:1,name:'பொங்கல்',type:'தமிழ் திருவிழா'},{d:15,m:1,name:'மாட்டுப் பொங்கல்',type:'தமிழ் திருவிழா'},{d:26,m:1,name:'குடியரசு தினம்',type:'தேசிய விழா'},{d:3,m:3,name:'மஹா சிவராத்திரி',type:'இந்து திருவிழா'},{d:14,m:4,name:'தமிழ் புத்தாண்டு',type:'தமிழ் திருவிழா'},{d:1,m:5,name:'மே தினம்',type:'தேசிய விழா'},{d:17,m:8,name:'சுதந்திர தினம்',type:'தேசிய விழா'},{d:26,m:8,name:'கிருஷ்ண ஜெயந்தி',type:'இந்து திருவிழா'},{d:29,m:8,name:'வினாயக சதுர்த்தி',type:'இந்து திருவிழா'},{d:2,m:10,name:'காந்தி ஜெயந்தி',type:'தேசிய விழா'},{d:20,m:10,name:'தீபாவளி',type:'இந்து திருவிழா'},{d:5,m:11,name:'கார்த்திகை தீபம்',type:'தமிழ் திருவிழா'},{d:25,m:12,name:'கிறிஸ்மஸ்',type:'கிறிஸ்தவ திருவிழா'}];
 const NAVA=[{planet:'சூரியன்',day:'ஞாயிறு',time:'காலை 6-7',mantra:'ஓம் ஹ்ரீம் சூர்யாய நமஃ',color:'சிவப்பு'},{planet:'சந்திரன்',day:'திங்கள்',time:'காலை 8-9',mantra:'ஓம் ஸோம் சோமாய நமஃ',color:'வெள்ளை'},{planet:'செவ்வாய்',day:'செவ்வாய்',time:'காலை 7-8',mantra:'ஓம் க்ரம் பௌமாய நமஃ',color:'சிவப்பு'},{planet:'புதன்',day:'புதன்',time:'காலை 9-10',mantra:'ஓம் ப்ரம் புதாய நமஃ',color:'பச்சை'},{planet:'குரு',day:'வியாழன்',time:'காலை 7-8',mantra:'ஓம் க்ரம் குரவே நமஃ',color:'மஞ்சள்'},{planet:'சுக்கிரன்',day:'வெள்ளி',time:'காலை 8-9',mantra:'ஓம் திரம் சுக்ராய நமஃ',color:'வெள்ளை'},{planet:'சனி',day:'சனி',time:'காலை 7-8',mantra:'ஓம் ப்ரம் சனைஸ்சராய நமஃ',color:'கருப்பு'},{planet:'ராகு',day:'வெள்ளி',time:'மாலை 6-7',mantra:'ஓம் ப்ரம் ராஹவே நமஃ',color:'நீலம்'},{planet:'கேது',day:'செவ்வாய்',time:'மாலை 6-7',mantra:'ஓம் ஸ்ரம் கேதவே நமஃ',color:'சாம்பல்'}];
-const DREAMS=[{icon:'🐍',name:'பாம்பு',result:'எதிரிகளால் ஆபத்து உள்ளது. கவனமாக இருங்கள். இறுதியில் வெற்றி கிட்டும்.'},{icon:'🌊',name:'தண்ணீர்',result:'பண வரவு அதிகரிக்கும். நல்ல காலம் வருகிறது.'},{icon:'🔥',name:'தீ',result:'சவால்கள் வரும். வெற்றி நிச்சயம்.'},{icon:'✈️',name:'பறத்தல்',result:'உயர்வு கிட்டும். வெளிநாட்டு வாய்ப்பு வரலாம்.'},{icon:'🌕',name:'நிலவு',result:'காதலில் வெற்றி. மன அமைதி கிட்டும்.'},{icon:'🐘',name:'யானை',result:'செல்வம் கிட்டும். கணேஷ் அருள் உண்டு.'},{icon:'🌸',name:'பூக்கள்',result:'மகிழ்ச்சி நிறைந்த காலம். நல்ல செய்தி வரும்.'},{icon:'🏔️',name:'மலை',result:'கடினமான காலம். உச்சி தொடுவீர்கள்.'},{icon:'☀️',name:'சூரியன்',result:'பெரிய வெற்றி வரும். புகழ் கிட்டும்.'},{icon:'💀',name:'மரணம்',result:'நல்ல அர்த்தம் — புதிய தொடக்கம் வரும்.'}];
+const DREAMS=[{icon:'🐍',name:'பாம்பு',result:'எதிரிகளால் ஆபத்து. இறுதியில் வெற்றி கிட்டும்.'},{icon:'🌊',name:'தண்ணீர்',result:'பண வரவு அதிகரிக்கும். நல்ல காலம் வருகிறது.'},{icon:'🔥',name:'தீ',result:'சவால்கள் வரும். வெற்றி நிச்சயம்.'},{icon:'✈️',name:'பறத்தல்',result:'உயர்வு கிட்டும். வெளிநாட்டு வாய்ப்பு வரலாம்.'},{icon:'🌕',name:'நிலவு',result:'காதலில் வெற்றி. மன அமைதி கிட்டும்.'},{icon:'🐘',name:'யானை',result:'செல்வம் கிட்டும். கணேஷ் அருள் உண்டு.'},{icon:'🌸',name:'பூக்கள்',result:'மகிழ்ச்சி நிறைந்த காலம். நல்ல செய்தி வரும்.'},{icon:'🏔️',name:'மலை',result:'கடினமான காலம். உச்சி தொடுவீர்கள்.'},{icon:'☀️',name:'சூரியன்',result:'பெரிய வெற்றி வரும். புகழ் கிட்டும்.'},{icon:'💀',name:'மரணம்',result:'நல்ல அர்த்தம் — புதிய தொடக்கம் வரும்.'}];
 const POR=['திணம்','கணம்','மஹேந்திரம்','ஸ்திரீ தீர்க்கம்','யோனி','ராசி','ராசியாதிபதி','வசியம்','ரஜ்ஜு','வேதை','திவஸ்யம்','நாடி'];
 const ND={1:'தலைமை, வெற்றி',2:'சமாதானம், கூட்டுறவு',3:'படைப்பாற்றல்',4:'உழைப்பு, நிலை',5:'சுதந்திரம், பயணம்',6:'அன்பு, குடும்பம்',7:'ஆன்மீகம், ஞானம்',8:'பணம், அதிகாரம்',9:'மனிதாபிமானம்'};
-const RASHI_KEYWORDS=['நலம்','பிரீதி','நட்பு','வெற்றி','அன்பு','சுகம்','பெருமை','ஆதரவு','லாபம்','உயர்வு','அமைதி','புகழ்'];
 
 let lang='ta',selRashi=-1,selDate=new Date(),calY=new Date().getFullYear(),calM=new Date().getMonth(),dpOpen=false;
 
-/* SPLASH — 3 seconds */
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    const s=document.getElementById('splash');
-    s.classList.add('hide');
-    setTimeout(()=>s.style.display='none',800);
-  },3000);
-});
+/* Splash */
+function showFallback(){
+  const s=document.getElementById('splash');
+  s.innerHTML=`<div class="sp-fallback"><div class="sp-fall-ganesha">🐘</div><div class="sp-fall-title">ஆர்விகா</div><div class="sp-fall-sub">வளமும் நலமும் பெறுக<br/>Tamil Astrology App</div><div class="sp-dots" style="margin-top:16px"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div></div>`;
+}
+window.addEventListener('load',()=>{setTimeout(()=>{const s=document.getElementById('splash');s.classList.add('hide');setTimeout(()=>s.style.display='none',800);},3000);});
 
 function updClock(){const n=new Date();document.getElementById('clock').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}
 setInterval(updClock,1000);updClock();
-
 function toHHMM(h){const hh=Math.floor(h),mm=Math.round((h-hh)*60),ap=hh<12?'AM':'PM',h12=hh%12||12;return`${h12}:${String(mm).padStart(2,'0')} ${ap}`;}
-function calcPanch(d){const dy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);return{tithi:TITHIS[dy%15],nak:NAKS[dy%27],yog:YOGS[dy%27],kar:KARS[dy%7]};}
+function calcPanch(d){const dy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);return{tithi:TITHIS[dy%15],nak:NAKS[dy%27],nakIdx:dy%27,yog:YOGS[dy%27],kar:KARS[dy%7]};}
 
 function fmtHdr(d){
   const day=d.getDay();
-  document.getElementById('dn-date').textContent=d.getDate()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
+  document.getElementById('dn-date').textContent=String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
   document.getElementById('dn-tamil').textContent=TM[(d.getMonth()+9)%12]+' '+(d.getFullYear()-57)+' • '+(lang==='ta'?TD[day]:ED[day]);
-  const isToday=new Date().toDateString()===d.toDateString();
-  document.getElementById('today-btn').style.display=isToday?'none':'block';
+  document.getElementById('today-btn').style.display=new Date().toDateString()===d.toDateString()?'none':'block';
 }
-
-function changeDate(delta){selDate=new Date(selDate);selDate.setDate(selDate.getDate()+delta);onDC();}
+function changeDate(d){selDate=new Date(selDate);selDate.setDate(selDate.getDate()+d);onDC();}
 function goToday(){selDate=new Date();onDC();}
-function toggleDP(){dpOpen=!dpOpen;const w=document.getElementById('dpw');w.style.display=dpOpen?'block':'none';if(dpOpen)document.getElementById('dpi').valueAsDate=selDate;}
+function toggleDP(){dpOpen=!dpOpen;document.getElementById('dpw').style.display=dpOpen?'block':'none';if(dpOpen)document.getElementById('dpi').valueAsDate=selDate;}
 function pickDate(v){if(!v)return;selDate=new Date(v+'T00:00:00');dpOpen=false;document.getElementById('dpw').style.display='none';onDC();}
-function onDC(){fmtHdr(selDate);renderNalKatti();if(selRashi>=0)showPalan(selRashi);}
+function onDC(){fmtHdr(selDate);renderNK();if(selRashi>=0)showPalan(selRashi);}
 
-/* ===== NAL KATTI RENDER ===== */
-function renderNalKatti(){
+function renderNK(){
   const d=selDate,day=d.getDay(),p=calcPanch(d);
   const tm=TM[(d.getMonth()+9)%12],ty=d.getFullYear()-57;
-  const dd=String(d.getDate()).padStart(2,'0');
-  const mm=String(d.getMonth()+1).padStart(2,'0');
-  const yyyy=d.getFullYear();
-  const isToday=new Date().toDateString()===d.toDateString();
-  const nk=NALLA_NERAM[day],gn=GOWRI_NERAM[day];
-  const sr=SUNRISE[d.getMonth()],ss=SUNSET[d.getMonth()];
-  const moonRise='8:'+String(Math.floor(Math.random()*59)).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0'),mm=String(d.getMonth()+1).padStart(2,'0'),yyyy=d.getFullYear();
+  const nk=NALLA[day],sr=SUNRISE[d.getMonth()],ss=SUNSET[d.getMonth()];
+  const RUTUS=['சிசிர','வசந்த','கிரீஷ்ம','வர்ஷ','சரத்','ஹேமந்த'];
+  const AYANS=['உத்தரையணம்','உத்தரையணம்','உத்தரையணம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','உத்தரையணம்','உத்தரையணம்','உத்தரையணம்'];
 
-  /* Big date box */
+  /* Big date */
   document.getElementById('nkDateBox').innerHTML=`
     <div class="nk-month-day">${EM[d.getMonth()]} - ${TD[day]}</div>
     <div class="nk-nav-row">
@@ -756,101 +532,96 @@ function renderNalKatti(){
       <div class="nk-big-date">${dd}-${mm}-${yyyy}</div>
       <button class="nk-nav-btn" onclick="changeDate(1)">›</button>
     </div>
-    <div class="nk-tamil-line">${tm} மாதம் - ${['சிசிர','வசந்த','கிரீஷ்ம','வர்ஷ','சரத்','ஹேமந்த'][Math.floor(d.getMonth()/2)%6]} ருது - ${d.getMonth()<6?'உத்தரையணம்':'தட்சிணாயனம்'}</div>
-    <div class="nk-tamil-line">${['விளம்பி','விகாரி','சார்வரி','பிலவ','சுபகிருது','சோபகிருது','க்ரோதி','விஸ்வாவசு','பராபவ','பிலவங்க','சுபகிருது','சோபகிருது'][ty%12]||'விஸ்வாவசு'} - ${tm} - ${d.getDate()}</div>
-    ${isToday?'':'<button class="nk-today-pill" onclick="goToday()" style="margin-top:6px">இன்று</button>'}`;
+    <div class="nk-tamil-line">${tm} மாதம் - ${RUTUS[Math.floor(d.getMonth()/2)%6]} ருது - ${AYANS[d.getMonth()]}</div>
+    <div class="nk-tamil-line">விஸ்வாவசு - ${tm} - ${d.getDate()}</div>`;
 
-  /* Sun/Moon */
+  /* Astro */
   document.getElementById('nkAstroRow').innerHTML=`
-    <div class="nk-astro-item">
-      <span class="nk-astro-icon">🌅</span>
-      <div class="nk-astro-lbl">சூரிய உதயம்</div>
-      <div class="nk-astro-val">${sr}</div>
-    </div>
-    <div class="nk-astro-item">
-      <span class="nk-astro-icon">🌇</span>
-      <div class="nk-astro-lbl">சூரிய அஸ்தமனம்</div>
-      <div class="nk-astro-val">${ss}</div>
-    </div>
-    <div class="nk-astro-item">
-      <span class="nk-astro-icon">🌙</span>
-      <div class="nk-astro-lbl">சந்திர உதயம்</div>
-      <div class="nk-astro-val">${moonRise}</div>
-    </div>`;
+    <div class="nk-astro-item"><span class="nk-astro-icon">🌅</span><div class="nk-astro-lbl">சூரிய உதயம்</div><div class="nk-astro-val">${sr}</div></div>
+    <div class="nk-astro-item"><span class="nk-astro-icon">🌇</span><div class="nk-astro-lbl">சூரிய அஸ்தமனம்</div><div class="nk-astro-val">${ss}</div></div>
+    <div class="nk-astro-item"><span class="nk-astro-icon">🌙</span><div class="nk-astro-lbl">சந்திர உதயம்</div><div class="nk-astro-val">8:${String(Math.floor((p.nakIdx*13)%60)).padStart(2,'0')}</div></div>`;
 
-  /* Nalla Neram */
+  /* Nalla neram */
   document.getElementById('nkNeramCard').innerHTML=`
-    <div class="nk-neram-hdr">நல்ல நேரம்</div>
-    <div class="nk-neram-row"><span class="nk-neram-lbl">காலை</span><span class="nk-neram-val">${nk.k}</span></div>
-    <div class="nk-neram-row"><span class="nk-neram-lbl">மாலை</span><span class="nk-neram-val">${nk.m}</span></div>
-    <div class="nk-neram-hdr" style="background:linear-gradient(135deg,#006400,#228B22)">கௌரி நல்ல நேரம்</div>
-    <div class="nk-neram-row"><span class="nk-neram-lbl">காலை</span><span class="nk-neram-val">${gn.k}</span></div>
-    <div class="nk-neram-row"><span class="nk-neram-lbl">மாலை</span><span class="nk-neram-val">${gn.m}</span></div>`;
+    <div class="nk-neram-hdr good">நல்ல நேரம்</div>
+    <div class="nk-neram-row"><span class="nk-neram-lbl">காலை</span><span class="nk-neram-val">${nk[0].k}</span></div>
+    <div class="nk-neram-row"><span class="nk-neram-lbl">மாலை</span><span class="nk-neram-val">${nk[0].m}</span></div>
+    <div class="nk-neram-hdr gowri">கௌரி நல்ல நேரம்</div>
+    <div class="nk-neram-row"><span class="nk-neram-lbl">காலை</span><span class="nk-neram-val">${nk[1].k}</span></div>
+    <div class="nk-neram-row"><span class="nk-neram-lbl">மாலை</span><span class="nk-neram-val">${nk[1].m}</span></div>`;
 
-  /* Rahu table */
+  /* Rahu */
   document.getElementById('nkRahuTable').innerHTML=`
     <div class="nk-rahu-hdr-row">
-      <div class="nk-rahu-th">இராகு</div>
-      <div class="nk-rahu-th">குளிகை</div>
-      <div class="nk-rahu-th">எமகண்டம்</div>
+      <div class="nk-rahu-th">இராகு</div><div class="nk-rahu-th">குளிகை</div><div class="nk-rahu-th">எமகண்டம்</div>
     </div>
     <div class="nk-rahu-row">
-      <div class="nk-rahu-td bad">${toHHMM(RAHU[day][0])} - ${toHHMM(RAHU[day][1])}</div>
-      <div class="nk-rahu-td good">${toHHMM(KULI[day][0])} - ${toHHMM(KULI[day][1])}</div>
-      <div class="nk-rahu-td bad">${toHHMM(YAMA[day][0])} - ${toHHMM(YAMA[day][1])}</div>
+      <div class="nk-rahu-td bad">${toHHMM(RAHU[day][0])}<br/>${toHHMM(RAHU[day][1])}</div>
+      <div class="nk-rahu-td good">${toHHMM(KULI[day][0])}<br/>${toHHMM(KULI[day][1])}</div>
+      <div class="nk-rahu-td bad">${toHHMM(YAMA[day][0])}<br/>${toHHMM(YAMA[day][1])}</div>
     </div>
     <div class="nk-rahu-row">
-      <div class="nk-rahu-td" style="color:#CC0000;font-size:10px">தவிர்க்கவும்</div>
-      <div class="nk-rahu-td" style="color:#006400;font-size:10px">சாதாரண நேரம்</div>
-      <div class="nk-rahu-td" style="color:#CC0000;font-size:10px">தவிர்க்கவும்</div>
+      <div class="nk-rahu-td" style="font-size:10px;color:#CC0000">தவிர்க்கவும்</div>
+      <div class="nk-rahu-td" style="font-size:10px;color:#006400">சாதாரண</div>
+      <div class="nk-rahu-td" style="font-size:10px;color:#CC0000">தவிர்க்கவும்</div>
     </div>`;
 
-  /* Panchangam card */
+  /* Star of the day */
+  const nakIdx=p.nakIdx;
+  const rashiOfNak=NAK_RASHI[nakIdx];
+  const rashiIdx=RASHI_NAMES_TA.indexOf(rashiOfNak);
+  const chandRashi=CHAND_8TH[rashiIdx>=0?rashiIdx:0];
+  document.getElementById('nkStarBox').innerHTML=`
+    <div class="nk-star-hdr">⭐ இன்றைய நட்சத்திர விவரம்</div>
+    <div class="nk-star-grid">
+      <div class="nk-star-item"><div class="nk-star-lbl">நட்சத்திரம்</div><div class="nk-star-val">${p.nak}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">நட்சத்திர ராசி</div><div class="nk-star-val">${rashiOfNak}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">திதி</div><div class="nk-star-val">${p.tithi}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">யோகம்</div><div class="nk-star-val">${p.yog}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">கரணம்</div><div class="nk-star-val">${p.kar}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">வாரம்</div><div class="nk-star-val">${TD[day]}</div></div>
+    </div>`;
+
+  /* Chandrastamam */
+  document.getElementById('nkChandBox').innerHTML=`
+    <div class="nk-chand-icon">🌑</div>
+    <div class="nk-chand-text">
+      <div>சந்திராஷ்டமம்</div>
+      <div>இன்று ${chandRashi} ராசிக்காரர்களுக்கு சந்திராஷ்டமம். முக்கியமான முடிவுகளை தவிர்க்கவும். பூஜை செய்யுங்கள்.</div>
+    </div>`;
+
+  /* Panchangam detail */
   document.getElementById('nkPanchCard').innerHTML=`
     <div class="c-hdr pink"><span class="c-title">📿 பஞ்சாங்கம் விவரம்</span></div>
-    <div class="nk-panch-grid">
-      <div class="nk-panch-item"><div class="nk-p-lbl">திதி</div><div class="nk-p-val">${p.tithi}</div></div>
-      <div class="nk-panch-item"><div class="nk-p-lbl">நட்சத்திரம்</div><div class="nk-p-val">${p.nak}</div></div>
-      <div class="nk-panch-item"><div class="nk-p-lbl">யோகம்</div><div class="nk-p-val">${p.yog}</div></div>
-      <div class="nk-panch-item"><div class="nk-p-lbl">கரணம்</div><div class="nk-p-val">${p.kar}</div></div>
-      <div class="nk-panch-item"><div class="nk-p-lbl">வாரம்</div><div class="nk-p-val">${TD[day]}</div></div>
-      <div class="nk-panch-item"><div class="nk-p-lbl">தமிழ் மாதம்</div><div class="nk-p-val">${tm} ${ty}</div></div>
+    <div class="nk-2col">
+      <div class="nk-2col-item"><div class="nk-p-lbl">சூரிய உதயம்</div><div class="nk-p-val">${sr}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">கரணன்</div><div class="nk-p-val">${p.kar}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">திதி</div><div class="nk-p-val">இன்று முழுவதும் ${p.tithi}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">நட்சத்திரம்</div><div class="nk-p-val">இன்று முழுவதும் ${p.nak}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">நாமயோகம்</div><div class="nk-p-val">${p.yog}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">சந்திராஷ்டமம்</div><div class="nk-p-val">${chandRashi} ராசி</div></div>
     </div>`;
 
-  /* Rashi summary table Nithra style */
-  const rows=RTA.map((r,i)=>`
-    <div class="nk-r-name">${r.n}</div><div class="nk-r-palan">${RASHI_KEYWORDS[i]}</div>`).join('');
+  /* Rashi table */
   document.getElementById('nkRashiTable').innerHTML=`
     <div class="nk-rashi-hdr">இன்றைய ராசி பலன்</div>
-    <div class="nk-rashi-grid">${rows}</div>`;
+    <div class="nk-rashi-rows">${RTA.map((r,i)=>`<div class="nk-r-name">${r.n}</div><div class="nk-r-palan">${RASHI_KW[i]}</div>`).join('')}</div>`;
 
-  /* Pon mozhi */
+  /* Ponmozhi */
   const dy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
-  document.getElementById('nkPonmozhi').innerHTML=`
-    <div class="nk-pm-title">பொன்மொழி :</div>
-    <div class="nk-pm-text">${PON_MOZHI[dy%PON_MOZHI.length]}</div>`;}
+  document.getElementById('nkPonmozhi').innerHTML=`<div class="nk-pm-title">பொன்மொழி :</div><div class="nk-pm-text">${PON_MOZHI[dy%PON_MOZHI.length]}</div>`;}
 
-/* Rashi grid */
 function renderRashi(){
   const R=lang==='ta'?RTA:REN;
-  document.getElementById('rashiGrid').innerHTML=R.map((r,i)=>`
-    <div class="rc${selRashi===i?' sel':''}" onclick="selectRashi(${i})">
-      <span class="r-sym">${r.s}</span><span class="r-n">${r.n}</span><span class="r-e">${r.e}</span>
-    </div>`).join('');}
-
+  document.getElementById('rashiGrid').innerHTML=R.map((r,i)=>`<div class="rc${selRashi===i?' sel':''}" onclick="selectRashi(${i})"><span class="r-sym">${r.s}</span><span class="r-n">${r.n}</span><span class="r-e">${r.e}</span></div>`).join('');}
 function selectRashi(i){selRashi=i;renderRashi();showPalan(i);}
 function showPalan(i){
   const R=lang==='ta'?RTA:REN,r=R[i],lk=LK[i];
   document.getElementById('palanCard').innerHTML=`
     <div class="c-hdr gold"><span class="c-title">${r.s} ${r.n} — ${r.e}</span><span class="c-badge">★★★★☆</span></div>
     <div class="palan-body"><div class="palan-text">${PAL[i]}</div></div>
-    <div class="lucky-row">
-      <div class="lk">நிறம்: ${lk.c}</div>
-      <div class="lk">எண்: ${lk.n}</div>
-      <div class="lk">நேரம்: ${lk.t}</div>
-    </div>`;}
+    <div class="lucky-row"><div class="lk">நிறம்: ${lk.c}</div><div class="lk">எண்: ${lk.n}</div><div class="lk">நேரம்: ${lk.t}</div></div>`;}
 
-/* Calendar */
 function renderCal(){
   document.getElementById('calMonthTitle').textContent=EM[calM]+' '+calY;
   document.getElementById('calTamilTitle').textContent=TM[(calM+9)%12]+' '+(calY-57);
@@ -864,18 +635,15 @@ function renderCal(){
   for(let i=0;i<first;i++)h+=`<div class="cd empty"></div>`;
   for(let d=1;d<=days;d++){
     const dow=new Date(calY,calM,d).getDay();
-    const isT=isNow&&d===today.getDate();
-    const isS=isSel&&d===selDate.getDate()&&!isT;
+    const isT=isNow&&d===today.getDate(),isS=isSel&&d===selDate.getDate()&&!isT;
     h+=`<div class="cd${isT?' today':''}${isS?' sel2':''}${fd.includes(d)?' festival':''}${dow===0?' sunday':''}" onclick="calDay(${d})"><div class="e">${d}</div><div class="t">${d}</div></div>`;
   }
   document.getElementById('calGrid').innerHTML=h;
   const mf=FESTS.filter(f=>f.m===calM+1);
   document.getElementById('festList').innerHTML=mf.length?mf.map(f=>`<div class="fest-item"><div class="fest-db"><div class="fest-d">${f.d}</div><div class="fest-m">${EM[f.m-1].slice(0,3)}</div></div><div><div class="fest-name">${f.name}</div><div class="fest-type">${f.type}</div></div></div>`).join(''):`<div style="text-align:center;color:var(--text3);font-size:13px;padding:14px;font-family:'Noto Serif Tamil',serif">இந்த மாதம் திருவிழாக்கள் இல்லை</div>`;}
-
-function calDay(d){selDate=new Date(calY,calM,d);fmtHdr(selDate);renderNalKatti();renderCal();if(selRashi>=0)showPalan(selRashi);}
+function calDay(d){selDate=new Date(calY,calM,d);fmtHdr(selDate);renderNK();renderCal();if(selRashi>=0)showPalan(selRashi);}
 function changeMonth(d){calM+=d;if(calM>11){calM=0;calY++;}if(calM<0){calM=11;calY--;}renderCal();}
 
-/* Muhurtham */
 function calcMuhurtham(){
   const dv=document.getElementById('muh-date').value;
   if(!dv){alert('தேதி தேர்ந்தெடுக்கவும்');return;}
@@ -888,10 +656,8 @@ function calcMuhurtham(){
   document.getElementById('muhResult').innerHTML=`<div style="text-align:center;background:var(--bg2);border-radius:8px;padding:10px;margin-bottom:10px;border:1px solid var(--border)"><div style="font-size:13px;color:var(--maroon);font-weight:700;font-family:'Noto Serif Tamil',serif">${dt.toLocaleDateString('ta-IN')} — ${TD[day]}</div><div style="font-size:12px;color:var(--text3);margin-top:3px;font-family:'Noto Serif Tamil',serif">நட்சத்திரம்: ${p.nak} | திதி: ${p.tithi}</div></div>${slots.map(s=>`<div class="muh-slot ${s.g?'good':'bad'}"><div class="muh-time">${s.t}</div><div class="muh-desc">${s.d}</div></div>`).join('')}`;}
 
 function renderNava(){document.getElementById('navaGrid').innerHTML=NAVA.map(g=>`<div class="nava-card"><div class="nava-hdr"><div class="nava-planet">🪐 ${g.planet}</div></div><div class="nava-body"><div class="nava-day">${g.day}</div><div class="nava-time">${g.time} | ${g.color}</div><div class="nava-mantra">${g.mantra}</div></div></div>`).join('');}
-
 function renderDreams(){document.getElementById('dreamGrid').innerHTML=DREAMS.map((d,i)=>`<div class="dream-btn" onclick="showDream(${i})"><span class="dream-icon">${d.icon}</span><div class="dream-name">${d.name}</div></div>`).join('');}
 function showDream(i){document.querySelectorAll('.dream-btn').forEach((b,j)=>b.classList.toggle('sel',j===i));const r=document.getElementById('dreamResult');r.style.display='block';r.innerHTML=`<div class="dream-rt">${DREAMS[i].icon} ${DREAMS[i].name} கனவு</div><div class="dream-rd">${DREAMS[i].result}</div>`;}
-
 function renderPorSel(){const o=NAKS.map((n,i)=>`<option value="${i}">${n}</option>`).join('');document.getElementById('por-boy').innerHTML=o;document.getElementById('por-girl').innerHTML=o;}
 function calcPorutham(){
   const b=parseInt(document.getElementById('por-boy').value),g=parseInt(document.getElementById('por-girl').value);
@@ -901,7 +667,6 @@ function calcPorutham(){
   const v=score>=10?'மிகவும் உகந்த பொருத்தம் 💚':score>=7?'நல்ல பொருத்தம் 🌟':score>=5?'சாதாரண பொருத்தம் 🌙':'பொருத்தம் இல்லை ❌';
   const r=document.getElementById('porResult');r.style.display='block';
   r.innerHTML=`<div class="por-score">${score}/12</div><div class="por-verdict">${v}</div><div style="margin-top:10px">${res.map(p=>`<div class="por-item"><span class="por-name">${p.name}</span><span class="por-badge ${p.ok?'por-ok':'por-no'}">${p.ok?'✓ உண்டு':'✗ இல்லை'}</span></div>`).join('')}</div>`;}
-
 function calcNum(){
   const inp=document.getElementById('n-inp').value;
   if(!inp){alert('தேதி கொடுக்கவும்');return;}
@@ -913,7 +678,6 @@ function calcNum(){
   const lbls=['உயிர் எண்','விதி எண்','பெயர் எண்','அதிர்ஷ்ட எண்'];
   const g=document.getElementById('numGrid');g.style.display='grid';
   g.innerHTML=lbls.map((l,i)=>`<div class="res-item"><div class="res-big">${nums[i]}</div><div class="res-lbl">${l}</div><div class="res-desc">${ND[nums[i]]||''}</div></div>`).join('');}
-
 function calcKundali(){
   const name=document.getElementById('k-name').value.trim()||'நண்பர்';
   const dob=document.getElementById('k-dob').value;
@@ -924,22 +688,10 @@ function calcKundali(){
   document.getElementById('kRDob').textContent=new Date(dob).toLocaleDateString(lang==='ta'?'ta-IN':'en-IN');
   document.getElementById('kGrid').innerHTML=planets.map(p=>`<div class="res-item" style="flex-direction:row;justify-content:space-between;text-align:left;padding:8px"><span style="font-size:12px;color:var(--text3);font-family:'Noto Serif Tamil',serif">${p}</span><span style="font-size:12px;color:var(--maroon);font-weight:700">${signs[Math.floor(Math.random()*12)]}</span></div>`).join('');
   document.getElementById('kResult').style.display='block';}
-
 function showPage(p){document.querySelectorAll('.page').forEach((pg,i)=>pg.classList.toggle('on',i===p));document.querySelectorAll('.bi').forEach((b,i)=>b.classList.toggle('on',i===p));document.querySelector('.content').scrollTop=0;}
-
-function setLang(l){
-  lang=l;
-  document.getElementById('bta').className='lb'+(l==='ta'?' on':'');
-  document.getElementById('ben').className='lb'+(l==='en'?' on':'');
-  document.getElementById('logo-main').textContent=l==='ta'?'ஆர்விகா':'Aarvika';
-  document.getElementById('logo-sub').textContent=l==='ta'?'தமிழ் ஜோதிடம்':'Tamil Astrology';
-  document.getElementById('today-btn').textContent=l==='ta'?'இன்று':'Today';
-  fmtHdr(selDate);renderNalKatti();renderRashi();renderCal();renderNava();
-  if(selRashi>=0)showPalan(selRashi);}
-
+function setLang(l){lang=l;document.getElementById('bta').className='lb'+(l==='ta'?' on':'');document.getElementById('ben').className='lb'+(l==='en'?' on':'');document.getElementById('logo-main').textContent=l==='ta'?'ஆர்விகா':'Aarvika';document.getElementById('logo-sub').textContent=l==='ta'?'தமிழ் ஜோதிடம்':'Tamil Astrology';document.getElementById('today-btn').textContent=l==='ta'?'இன்று':'Today';fmtHdr(selDate);renderNK();renderRashi();renderCal();renderNava();if(selRashi>=0)showPalan(selRashi);}
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
-
-fmtHdr(selDate);renderNalKatti();renderRashi();renderCal();renderNava();renderDreams();renderPorSel();
+fmtHdr(selDate);renderNK();renderRashi();renderCal();renderNava();renderDreams();renderPorSel();
 </script>
 </body>
 </html>
