@@ -1,20 +1,39 @@
 {
-  "name": "ஜோதிடம் - Tamil Astrology",
-  "short_name": "ஜோதிடம்",
-  "description": "Daily Horoscope, Kundali & Numerology in Tamil & English",
+  "name": "ஆர்விகா - Tamil Astrology",
+  "short_name": "ஆர்விகா",
+  "description": "Tamil Astrology App - Daily Horoscope, Panchangam, Rahu Kalam, Nal Neram, Rashi Palan in Tamil and English",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0118",
-  "theme_color": "#0a0118",
+  "background_color": "#8B0000",
+  "theme_color": "#8B0000",
   "orientation": "portrait",
   "lang": "ta",
   "icons": [
-    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
   "categories": ["lifestyle", "entertainment"],
-  "screenshots": [],
-  "shortcuts": [
-    {"name": "Daily Horoscope", "url": "/?page=horoscope", "description": "View today's horoscope"},
-    {"name": "Kundali", "url": "/?page=kundali", "description": "Calculate birth chart"}
+  "screenshots": [
+    {
+      "src": "splash.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    }
   ]
 }
