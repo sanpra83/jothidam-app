@@ -1,6 +1,5 @@
-const CACHE = 'jothidam-v1';
-const ASSETS = ['/', '/index.html', '/manifest.json', '/icon.svg',
-  'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&family=Lato:wght@300;400;700&display=swap'];
+const CACHE = 'aarvika-v3';
+const ASSETS = ['/', '/index.html', '/manifest.json', '/icon.svg', '/icon-192.png', '/icon-512.png', '/splash.jpg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS).catch(()=>{})));
