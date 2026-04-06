@@ -26,28 +26,28 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 
 /* ===== SPLASH ===== */
 #splash{
-  position:fixed;inset:0;z-index:9999;
-  display:flex;flex-direction:column;align-items:center;
-  overflow:hidden;transition:opacity 0.8s ease;
-  background:#CC0000;
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:9999;overflow:hidden;
+  transition:opacity 0.8s ease;
+  background:#8B0000;
 }
 #splash.hide{opacity:0;pointer-events:none}
-#splashImg{width:100%;height:100%;object-fit:cover;object-position:center top}
-.sp-overlay{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,#FFD700 60%);
-  padding:20px 20px 30px;text-align:center;
+#splashImg{
+  position:absolute;top:0;left:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center center;
 }
-.sp-tagline{font-family:'Noto Serif Tamil',serif;font-size:22px;font-weight:700;color:#8B0000;margin-bottom:6px}
-.sp-app-name{font-family:'Noto Serif Tamil',serif;font-size:32px;font-weight:700;color:#8B0000}
-.sp-sub{font-size:13px;color:#5B0000;font-family:'Noto Serif Tamil',serif;margin-top:2px}
-.sp-dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
-.sp-dot{width:10px;height:10px;border-radius:50%;background:rgba(139,0,0,0.3);animation:dp 1.2s ease-in-out infinite}
+.sp-dots{
+  position:absolute;bottom:40px;left:0;right:0;
+  display:flex;gap:10px;justify-content:center;
+}
+.sp-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,215,0,0.4);animation:dp 1.2s ease-in-out infinite}
 .sp-dot:nth-child(2){animation-delay:.2s}
 .sp-dot:nth-child(3){animation-delay:.4s}
-@keyframes dp{0%,100%{background:rgba(139,0,0,0.3);transform:scale(1)}50%{background:#8B0000;transform:scale(1.4)}}
+@keyframes dp{0%,100%{background:rgba(255,215,0,0.4);transform:scale(1)}50%{background:#FFD700;transform:scale(1.4)}}
 /* Fallback if no image */
-.sp-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:linear-gradient(180deg,#CC0000,#FF4500,#FFD700)}
+.sp-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#CC0000,#FF4500,#FFD700)}
 .sp-fall-ganesha{font-size:120px;filter:drop-shadow(0 0 30px rgba(255,215,0,0.8));animation:glow 2s ease-in-out infinite}
 @keyframes glow{0%,100%{filter:drop-shadow(0 0 20px rgba(255,215,0,0.6))}50%{filter:drop-shadow(0 0 50px rgba(255,215,0,1))}}
 .sp-fall-title{font-family:'Noto Serif Tamil',serif;font-size:36px;color:#FFF8E7;font-weight:700;margin-top:10px}
@@ -282,12 +282,7 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 <!-- SPLASH -->
 <div id="splash">
   <img id="splashImg" src="splash.jpg" alt="" onerror="showFallback()"/>
-  <div class="sp-overlay">
-    <div class="sp-tagline">வளமும் நலமும் பெறுக</div>
-    <div class="sp-app-name">ஆர்விகா</div>
-    <div class="sp-sub">Tamil Astrology App</div>
-    <div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
-  </div>
+  <div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
 </div>
 
 <div class="app">
