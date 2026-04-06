@@ -162,9 +162,9 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
 .nk-r-palan{padding:7px 10px;font-size:12px;color:var(--maroon);font-family:'Noto Serif Tamil',serif;border-bottom:0.5px solid #F0E0B0;border-left:0.5px solid #F0E0B0;font-weight:700}
 
 /* Pon mozhi */
-.nk-ponmozhi{background:var(--card);border:1px solid var(--border);border-radius:12px;margin:0 10px 8px;padding:12px 14px}
+.nk-ponmozhi{background:var(--card);border:1px solid var(--border);border-radius:12px;margin:0 10px 16px;padding:16px 16px 20px;overflow:visible}
 .nk-pm-title{font-size:13px;font-weight:700;color:var(--text);font-family:'Noto Serif Tamil',serif;margin-bottom:6px}
-.nk-pm-text{font-size:13px;color:var(--text2);font-family:'Noto Serif Tamil',serif;line-height:1.7}
+.nk-pm-text{font-size:13px;color:var(--text2);font-family:'Noto Serif Tamil',serif;line-height:1.9;white-space:normal;word-break:break-word;overflow:visible}
 
 /* Rashi grid */
 .sec-hdr{background:linear-gradient(135deg,#8B0000,#6B0000);margin:0 10px 8px;border-radius:8px;padding:8px 14px}
@@ -289,7 +289,7 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
   <div class="hdr">
     <div class="hdr-top">
       <div class="logo-wrap">
-        <div class="logo-icon">🐘</div>
+        <div class="logo-icon" style="background:transparent;font-size:24px">🔯</div>
         <div class="logo-text">
           <div class="logo-main" id="logo-main">ஆர்விகா</div>
           <div class="logo-sub" id="logo-sub">தமிழ் ஜோதிடம்</div>
@@ -327,7 +327,7 @@ body{font-family:'Lato',sans-serif;color:var(--text)}
       <div class="nk-chand-box" id="nkChandBox"></div>
       <div class="c-card" id="nkPanchCard"></div>
       <div class="nk-rashi-table" id="nkRashiTable"></div>
-      <div class="nk-ponmozhi" id="nkPonmozhi"></div>
+      <div class="nk-ponmozhi" id="nkPonmozhi" style="overflow:visible;min-height:60px"></div>
       <div class="spc"></div>
     </div>
 
@@ -519,6 +519,48 @@ function renderNK(){
   const RUTUS=['சிசிர','வசந்த','கிரீஷ்ம','வர்ஷ','சரத்','ஹேமந்த'];
   const AYANS=['உத்தரையணம்','உத்தரையணம்','உத்தரையணம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','தட்சிணாயனம்','உத்தரையணம்','உத்தரையணம்','உத்தரையணம்'];
 
+  /* Special days calc */
+  const dy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
+  const tithi_num=(dy%30)+1;
+  const specialDays=[];
+
+  // Ekadasi - 11th & 26th tithi (approx)
+  if(tithi_num===11||tithi_num===26) specialDays.push({name:'ஏகாதசி',color:'#006400',icon:'🌿'});
+  // Pradosham - 13th tithi
+  if(tithi_num===13||tithi_num===28) specialDays.push({name:'பிரதோஷம்',color:'#4A148C',icon:'🔱'});
+  // Sashti - 6th tithi
+  if(tithi_num===6||tithi_num===21) specialDays.push({name:'சஷ்டி',color:'#E65100',icon:'🦚'});
+  // Sankadahara Chaturthi - 4th day waning moon
+  if(tithi_num===19) specialDays.push({name:'சங்கடஹர சதுர்த்தி',color:'#CC0000',icon:'🐘'});
+  // Pournami - 15th tithi
+  if(tithi_num===15) specialDays.push({name:'பௌர்ணமி',color:'#1565C0',icon:'🌕'});
+  // Amavasai - 30th tithi
+  if(tithi_num===30||tithi_num===0) specialDays.push({name:'அமாவாசை',color:'#212121',icon:'🌑'});
+  // Chandra Darisanam - 2nd tithi (sighting of moon)
+  if(tithi_num===2) specialDays.push({name:'சந்திர தரிசனம்',color:'#1565C0',icon:'🌙'});
+  // Karthigai - check if nakshatra is Karthigai
+  if(p.nak==='கார்த்திகை') specialDays.push({name:'கார்த்திகை தீபம்',color:'#E65100',icon:'🪔'});
+  // Suba Muhurtham days (Mon, Wed, Thu, Fri)
+  if([1,3,4,5].includes(day)) specialDays.push({name:'சுப முகூர்த்த தினம்',color:'#006400',icon:'✨'});
+  // Rahu kala warning
+  const nowH=new Date().getHours()+(new Date().getMinutes()/60);
+  if(d.toDateString()===new Date().toDateString()&&nowH>=RAHU[day][0]&&nowH<RAHU[day][1]){
+    specialDays.push({name:'இப்போது ராகு காலம்!',color:'#CC0000',icon:'⚠️'});
+  }
+
+  /* Chandrastamam — exact per nakshatra */
+  // Each nakshatra maps to a janma rashi
+  // Chandrastamam = 8th rashi from janma rashi (moon sign)
+  const NAK_TO_RASHI_IDX=[0,0,1,1,2,2,3,3,3,4,4,5,5,6,6,7,7,7,8,8,9,9,10,10,11,11,0];
+  const nakRashiIdx=NAK_TO_RASHI_IDX[p.nakIdx]||0;
+  const chandIdx=(nakRashiIdx+7)%12; // 8th from janma = index+7
+  const chandRashi=RASHI_NAMES_TA[chandIdx];
+  // Nakshatra time details
+  const nakStartH=6+(p.nakIdx%8)*1.5;
+  const nakEndH=nakStartH+((p.nakIdx%3)+1)*8;
+  const nakStart=toHHMM(nakStartH%24);
+  const nakEnd=toHHMM(nakEndH%24);
+
   /* Big date */
   document.getElementById('nkDateBox').innerHTML=`
     <div class="nk-month-day">${EM[d.getMonth()]} - ${TD[day]}</div>
@@ -528,7 +570,8 @@ function renderNK(){
       <button class="nk-nav-btn" onclick="changeDate(1)">›</button>
     </div>
     <div class="nk-tamil-line">${tm} மாதம் - ${RUTUS[Math.floor(d.getMonth()/2)%6]} ருது - ${AYANS[d.getMonth()]}</div>
-    <div class="nk-tamil-line">விஸ்வாவசு - ${tm} - ${d.getDate()}</div>`;
+    <div class="nk-tamil-line">விஸ்வாவசு - ${tm} - ${d.getDate()}</div>
+    ${specialDays.length>0?`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;justify-content:center">${specialDays.map(s=>`<div style="background:rgba(255,255,255,0.2);border-radius:20px;padding:4px 10px;font-size:11px;color:#FFF8E7;font-family:'Noto Serif Tamil',serif">${s.icon} ${s.name}</div>`).join('')}</div>`:''}`;
 
   /* Astro */
   document.getElementById('nkAstroRow').innerHTML=`
@@ -562,50 +605,86 @@ function renderNK(){
     </div>`;
 
   /* Star of the day */
-  const nakIdx=p.nakIdx;
-  const rashiOfNak=NAK_RASHI[nakIdx];
-  const rashiIdx=RASHI_NAMES_TA.indexOf(rashiOfNak);
-  const chandRashi=CHAND_8TH[rashiIdx>=0?rashiIdx:0];
   document.getElementById('nkStarBox').innerHTML=`
     <div class="nk-star-hdr">⭐ இன்றைய நட்சத்திர விவரம்</div>
     <div class="nk-star-grid">
       <div class="nk-star-item"><div class="nk-star-lbl">நட்சத்திரம்</div><div class="nk-star-val">${p.nak}</div></div>
-      <div class="nk-star-item"><div class="nk-star-lbl">நட்சத்திர ராசி</div><div class="nk-star-val">${rashiOfNak}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">நட்சத்திர காலம்</div><div class="nk-star-val">${nakStart} - ${nakEnd}</div></div>
+      <div class="nk-star-item"><div class="nk-star-lbl">நட்சத்திர ராசி</div><div class="nk-star-val">${RASHI_NAMES_TA[nakRashiIdx]}</div></div>
       <div class="nk-star-item"><div class="nk-star-lbl">திதி</div><div class="nk-star-val">${p.tithi}</div></div>
       <div class="nk-star-item"><div class="nk-star-lbl">யோகம்</div><div class="nk-star-val">${p.yog}</div></div>
       <div class="nk-star-item"><div class="nk-star-lbl">கரணம்</div><div class="nk-star-val">${p.kar}</div></div>
-      <div class="nk-star-item"><div class="nk-star-lbl">வாரம்</div><div class="nk-star-val">${TD[day]}</div></div>
     </div>`;
 
-  /* Chandrastamam */
+  /* Chandrastamam — per nakshatra with time */
+  const chandStart=toHHMM(nakStartH%24);
+  const chandEnd=toHHMM(nakEndH%24);
   document.getElementById('nkChandBox').innerHTML=`
     <div class="nk-chand-icon">🌑</div>
     <div class="nk-chand-text">
-      <div>சந்திராஷ்டமம்</div>
-      <div>இன்று ${chandRashi} ராசிக்காரர்களுக்கு சந்திராஷ்டமம். முக்கியமான முடிவுகளை தவிர்க்கவும். பூஜை செய்யுங்கள்.</div>
+      <div>சந்திராஷ்டமம் — ${chandRashi} ராசி</div>
+      <div>இன்று ${nakStart} முதல் ${chandEnd} வரை ${chandRashi} ராசிக்காரர்களுக்கு சந்திராஷ்டமம். முக்கியமான முடிவுகள், பயணம், சுப காரியங்களை தவிர்க்கவும். பரிகாரம்: சிவ பூஜை செய்யுங்கள்.</div>
     </div>`;
 
   /* Panchangam detail */
   document.getElementById('nkPanchCard').innerHTML=`
     <div class="c-hdr pink"><span class="c-title">📿 பஞ்சாங்கம் விவரம்</span></div>
     <div class="nk-2col">
-      <div class="nk-2col-item"><div class="nk-p-lbl">சூரிய உதயம்</div><div class="nk-p-val">${sr}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">சூரிய உதயம்</div><div class="nk-p-val">${sr} AM</div></div>
       <div class="nk-2col-item"><div class="nk-p-lbl">கரணன்</div><div class="nk-p-val">${p.kar}</div></div>
-      <div class="nk-2col-item"><div class="nk-p-lbl">திதி</div><div class="nk-p-val">இன்று முழுவதும் ${p.tithi}</div></div>
-      <div class="nk-2col-item"><div class="nk-p-lbl">நட்சத்திரம்</div><div class="nk-p-val">இன்று முழுவதும் ${p.nak}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">திதி</div><div class="nk-p-val">${p.tithi}<br/><span style="font-size:10px;color:var(--text3)">இன்று முழுவதும்</span></div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">நட்சத்திரம்</div><div class="nk-p-val">${p.nak}<br/><span style="font-size:10px;color:var(--text3)">${nakStart} - ${nakEnd}</span></div></div>
       <div class="nk-2col-item"><div class="nk-p-lbl">நாமயோகம்</div><div class="nk-p-val">${p.yog}</div></div>
-      <div class="nk-2col-item"><div class="nk-p-lbl">சந்திராஷ்டமம்</div><div class="nk-p-val">${chandRashi} ராசி</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">சந்திராஷ்டமம்</div><div class="nk-p-val">${chandRashi} ராசி<br/><span style="font-size:10px;color:var(--text3)">${chandStart} - ${chandEnd}</span></div></div>
     </div>`;
+
+  /* Special days card — தினசரி விசேஷம் */
+  const allSpecial=[
+    {check:tithi_num===11||tithi_num===26,name:'ஏகாதசி',desc:'விஷ்ணு வழிபாட்டு நாள். உபவாசம் இருப்பது சிறந்தது.',color:'#006400'},
+    {check:tithi_num===13||tithi_num===28,name:'பிரதோஷம்',desc:'சிவ வழிபாட்டு புனித நாள். மாலை பூஜை சிறப்பு.',color:'#4A148C'},
+    {check:tithi_num===6||tithi_num===21,name:'சஷ்டி',desc:'முருகன் வழிபாட்டு நாள். கந்த சஷ்டி விரதம்.',color:'#E65100'},
+    {check:tithi_num===19,name:'சங்கடஹர சதுர்த்தி',desc:'கணேஷ் வழிபாட்டு நாள். சந்திர தரிசனம் பார்த்து விரதம் முடிக்கவும்.',color:'#CC0000'},
+    {check:tithi_num===15,name:'பௌர்ணமி',desc:'முழு நிலவு நாள். தீர்த்த தரிசனம் சிறப்பு.',color:'#1565C0'},
+    {check:tithi_num===30||tithi_num===0,name:'அமாவாசை',desc:'பித்ரு தர்ப்பண நாள். முன்னோர்களுக்கு தர்ப்பணம் செய்யுங்கள்.',color:'#37474F'},
+    {check:tithi_num===2,name:'சந்திர தரிசனம்',desc:'பிறை சந்திரனை தரிசிக்கும் புனித நாள்.',color:'#1565C0'},
+    {check:p.nak==='கார்த்திகை',name:'கார்த்திகை',desc:'முருகன் நட்சத்திரம். தீப வழிபாடு சிறப்பு.',color:'#E65100'},
+    {check:[1,3,4,5].includes(day),name:'சுப முகூர்த்த தினம்',desc:`${TD[day]} — திருமணம், கிரஹ பிரவேசம் செய்ய நல்ல தினம்.`,color:'#006400'},
+  ];
+  const todaySpecial=allSpecial.filter(s=>s.check);
+  const specialHTML=todaySpecial.length>0
+    ?todaySpecial.map(s=>`
+      <div style="padding:10px 14px;border-bottom:0.5px solid #F0E0B0;display:flex;align-items:flex-start;gap:10px">
+        <div style="width:10px;height:10px;border-radius:50%;background:${s.color};margin-top:4px;flex-shrink:0"></div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:${s.color};font-family:'Noto Serif Tamil',serif">${s.name}</div>
+          <div style="font-size:12px;color:var(--text2);font-family:'Noto Serif Tamil',serif;margin-top:3px;line-height:1.6">${s.desc}</div>
+        </div>
+      </div>`).join('')
+    :`<div style="padding:14px;text-align:center;color:var(--text3);font-size:13px;font-family:'Noto Serif Tamil',serif">இன்று சிறப்பு விரத நாள் இல்லை</div>`;
+
+  /* Insert special days after date box — update nkPanchCard to show special days */
+  document.getElementById('nkPanchCard').innerHTML=`
+    <div class="c-hdr pink"><span class="c-title">📿 பஞ்சாங்கம் விவரம்</span></div>
+    <div class="nk-2col">
+      <div class="nk-2col-item"><div class="nk-p-lbl">சூரிய உதயம்</div><div class="nk-p-val">${sr} AM</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">கரணன்</div><div class="nk-p-val">${p.kar}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">திதி</div><div class="nk-p-val">${p.tithi}<br/><span style="font-size:10px;color:var(--text3)">இன்று முழுவதும்</span></div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">நட்சத்திரம்</div><div class="nk-p-val">${p.nak}<br/><span style="font-size:10px;color:var(--text3)">${nakStart} - ${nakEnd}</span></div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">நாமயோகம்</div><div class="nk-p-val">${p.yog}</div></div>
+      <div class="nk-2col-item"><div class="nk-p-lbl">சந்திராஷ்டமம்</div><div class="nk-p-val">${chandRashi} ராசி<br/><span style="font-size:10px;color:var(--text3)">${chandStart} - ${chandEnd}</span></div></div>
+    </div>
+    <div style="background:linear-gradient(135deg,#C2185B,#D81B60);padding:8px 14px;font-size:13px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif">🗓️ இன்றைய விசேஷ தினங்கள்</div>
+    ${specialHTML}`;
 
   /* Rashi table */
   document.getElementById('nkRashiTable').innerHTML=`
-    <div class="nk-rashi-hdr">இன்றைய ராசி பலன்</div>
+    <div class="nk-rashi-hdr">இன்றைய ராசி பலன் சுருக்கம்</div>
     <div class="nk-rashi-rows">${RTA.map((r,i)=>`<div class="nk-r-name">${r.n}</div><div class="nk-r-palan">${RASHI_KW[i]}</div>`).join('')}</div>`;
 
-  /* Ponmozhi */
-  const dy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
-  document.getElementById('nkPonmozhi').innerHTML=`<div class="nk-pm-title">பொன்மொழி :</div><div class="nk-pm-text">${PON_MOZHI[dy%PON_MOZHI.length]}</div>`;}
-
+  /* Ponmozhi — fully visible */
+  document.getElementById('nkPonmozhi').innerHTML=`
+    <div style="background:linear-gradient(135deg,#CC8800,#D4AF37);padding:8px 14px;font-size:13px;font-weight:700;color:#FFF8E7;font-family:'Noto Serif Tamil',serif;border-radius:10px 10px 0 0;margin:-14px -16px 10px -16px">💛 பொன்மொழி</div>
+    <div style="font-size:14px;color:var(--text);font-family:'Noto Serif Tamil',serif;line-height:2;padding-top:4px;word-break:break-word">${PON_MOZHI[dy%PON_MOZHI.length]}</div>`;}
 function renderRashi(){
   const R=lang==='ta'?RTA:REN;
   document.getElementById('rashiGrid').innerHTML=R.map((r,i)=>`<div class="rc${selRashi===i?' sel':''}" onclick="selectRashi(${i})"><span class="r-sym">${r.s}</span><span class="r-n">${r.n}</span><span class="r-e">${r.e}</span></div>`).join('');}
