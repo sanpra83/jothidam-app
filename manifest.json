@@ -1,7 +1,7 @@
 {
-  "name": "ஆர்விகா - Tamil Astrology",
-  "short_name": "ஆர்விகா",
-  "description": "Tamil Astrology App - Daily Horoscope, Panchangam, Rahu Kalam, Nal Neram, Rashi Palan in Tamil and English",
+  "name": "Aarvika - Tamil Astrology",
+  "short_name": "Aarvika",
+  "description": "Tamil Astrology App with Daily Horoscope, Panchangam, Rahu Kalam, Temples and Festivals",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#8B0000",
@@ -9,12 +9,6 @@
   "orientation": "portrait",
   "lang": "ta",
   "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
     {
       "src": "icon-192.png",
       "sizes": "192x192",
@@ -28,12 +22,13 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["lifestyle", "entertainment"],
+  "categories": ["lifestyle", "entertainment", "utilities"],
   "screenshots": [
     {
       "src": "splash.jpg",
       "sizes": "1080x1920",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "form_factor": "narrow"
     }
   ]
 }
